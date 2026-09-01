@@ -84,7 +84,7 @@ def histogram(series: pd.Series, edges, labels) -> pd.Series:
 
 # --------------------------------------------------------------------- #
 # Sidebar filters
-# --------------------------------------------------------------------- #
+
 st.sidebar.title("Filters")
 st.sidebar.caption("Applied to the Explore and Watch Planner tabs.")
 
@@ -120,7 +120,7 @@ tab_explore, tab_recommend, tab_planner, tab_model, tab_quality = st.tabs(
 
 # --------------------------------------------------------------------- #
 # Tab 1 - Explore
-# --------------------------------------------------------------------- #
+
 with tab_explore:
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Titles", f"{len(df):,}")
@@ -192,7 +192,7 @@ with tab_explore:
 
 # --------------------------------------------------------------------- #
 # Tab 2 - Recommendations
-# --------------------------------------------------------------------- #
+
 with tab_recommend:
     st.subheader("Content-based recommendations")
     st.caption(
@@ -253,7 +253,7 @@ with tab_recommend:
 
 # --------------------------------------------------------------------- #
 # Tab 3 - Watch Planner
-# --------------------------------------------------------------------- #
+
 with tab_planner:
     st.subheader("What can I finish in the time I have?")
     st.caption(
@@ -298,26 +298,26 @@ with tab_planner:
 
 # --------------------------------------------------------------------- #
 # Tab 4 - Model
-# --------------------------------------------------------------------- #
+
 with tab_model:
     st.subheader("Predicting whether a title is a Movie or a TV Show")
 
     leaky = get_leaky_report(df)
     pipeline, honest = get_classifier(df)
 
-    # st.markdown("#### Why the first version scored 100%")
-    # st.write(
-    #     "The original model was trained on `imdb_rating`, `duration_mins` and "
-    #     "`season_count`. All three were derived from the `duration` column, "
-    #     "which stores `90 min` for films and `2 Seasons` for series. "
-    #     "`duration_mins` is therefore zero for every series and non-zero for "
-    #     "every film: the feature *is* the label."
-    # )
-    # st.dataframe(model_module.leakage_evidence(df), use_container_width=True)
-    # st.caption(
-    #     "3 films have a missing duration, which is the only reason this is not "
-    #     "a literal 100/0 split. A single if-statement reproduces the model."
-    # )
+    st.markdown("#### Why the first version scored 100%")
+    st.write(
+        "The original model was trained on `imdb_rating`, `duration_mins` and "
+        "`season_count`. All three were derived from the `duration` column, "
+        "which stores `90 min` for films and `2 Seasons` for series. "
+        "`duration_mins` is therefore zero for every series and non-zero for "
+        "every film: the feature *is* the label."
+    )
+    st.dataframe(model_module.leakage_evidence(df), use_container_width=True)
+    st.caption(
+        "3 films have a missing duration, which is the only reason this is not "
+        "a literal 100/0 split. A single if-statement reproduces the model."
+    )
 
     st.markdown("#### Leaky model vs leakage-free model")
     comparison = pd.DataFrame(

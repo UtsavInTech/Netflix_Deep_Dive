@@ -125,7 +125,6 @@ widgets, and every piece of logic lives in a plain function in `src/` that takes
 DataFrame and returns a DataFrame. That is the change that made the 33 tests possible.
 
 ---
-
 ## The data
 
 Two independent datasets with **no shared ID column**:
