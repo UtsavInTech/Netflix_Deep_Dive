@@ -1,0 +1,5 @@
+# Core application dependencies (pinned to the versions this was built on)
+pandas==2.3.3
+numpy==2.0.2
+scikit-learn==1.6.1
+streamlit==1.51.0
